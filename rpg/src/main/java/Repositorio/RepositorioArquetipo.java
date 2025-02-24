@@ -61,7 +61,6 @@ public class RepositorioArquetipo {
 
             // Itera sobre os resultados e cria objetos Raca para cada linha
             while (rs.next()) {
-                System.out.println("Todos os Arquétipos");
             	Arquetipo arquetipos = new Arquetipo();
             	arquetipos.setId(rs.getInt("id_arquetipo"));
             	arquetipos.setNome(rs.getString("nome"));
