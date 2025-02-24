@@ -136,6 +136,8 @@ public class RepositorioBatalha {
             e.printStackTrace();
         }
 
+        public 
+
         // Retorna a raça encontrada ou null se não existir
         return batalha;
     }
