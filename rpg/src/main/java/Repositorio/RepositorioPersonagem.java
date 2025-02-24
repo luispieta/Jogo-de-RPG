@@ -66,6 +66,7 @@ public class RepositorioPersonagem {
 
             // Itera sobre os resultados e cria objetos Raca para cada linha
             while (rs.next()) {
+                System.out.println("Todos as Personagens");
             	Personagem personagens = new Personagem();
             	personagens.setId(rs.getInt("id_personagem"));
             	personagens.setNome(rs.getString("nome"));

@@ -90,7 +90,7 @@ public class Ring {
 			while (true) {
 				//Selecionar rotina que deseja
 				System.out.println("===== MENU =====");
-				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Sair");
+				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Deletar Batalha \n 4 - Sair");
 				int escolha = entrada.nextInt();
 				System.out.print("\n");
 
@@ -183,7 +183,7 @@ public class Ring {
 					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não \n 3 - Sair");
 					int criar = entrada.nextInt();
 
-					if (criar == )
+				
 
 				} else {
 					System.out.println("Obrigado por jogar!");

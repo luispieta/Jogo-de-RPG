@@ -62,6 +62,7 @@ public class RepositorioRaca {
 
             // Itera sobre os resultados e cria objetos Raca para cada linha
             while (rs.next()) {
+                System.out.println("Todos as Raças");
                 Raca racas = new Raca();
                 racas.setId(rs.getInt("id_raca"));
                 racas.setNome(rs.getString("nome"));

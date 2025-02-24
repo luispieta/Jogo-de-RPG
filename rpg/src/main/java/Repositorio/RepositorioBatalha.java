@@ -110,6 +110,7 @@ public class RepositorioBatalha {
             try (ResultSet rs = stmt.executeQuery()) {
                 // Verifica se a raça foi encontrada
                 if (rs.next()) {
+                    System.out.println("Todas as Batalhas");
                     int lutador1_id = rs.getInt("lutador1_id");
                     int lutador2_id = rs.getInt("lutador2_id");
                     int vencedorId = rs.getInt("vencedor_id");
@@ -141,4 +142,32 @@ public class RepositorioBatalha {
         // Retorna a raça encontrada ou null se não existir
         return batalha;
     }
+
+    public Batalha deletarBatalha(int id) {
+
+        String sql = "DELETE FROM batalhas WHERE id_batalha = ?"
+        boolean deletado = false;
+
+        try (Connection conexao = DatabaseConnection.conectar();
+        PreparedStatement stmt = conexao.prepareStatement(sql);) {
+
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                deletado = true;
+                System.out.println("A Batalha deletada com o ID" + id);
+
+            } else {
+                System.out.println("O ID" + id + "não foi encontrado.")
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return deletado;
+    } 
 }
