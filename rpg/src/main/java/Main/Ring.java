@@ -85,13 +85,18 @@ public class Ring {
 			personagemRepositorio.salvarPersonagem(jaina);
 			
 			*/
+
+			//While para sempre mostrar o MENU
 			while (true) {
+				//Selecionar rotina que deseja
 				System.out.println("===== MENU =====");
-				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Sair");
+				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Deletar batalha \n 4 - Sair");
 				int escolha = entrada.nextInt();
 				System.out.print("\n");
 
+				//IFs para escolher alguma rotina
 				if (escolha == 1) {
+					//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
 					System.out.println(personagemRepositorio.buscarTodosPersonagens());
 					System.out.println("Escolha um personagem digitando de 1 a 10");
 
@@ -103,8 +108,10 @@ public class Ring {
 					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
 					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
 
+					//Resultado NULL para dizer que não tem nem um jogador como vencedor
 					Personagem vencedor = null;
 							
+					
 					if (escolhaJogador1.getVida() > escolhaJogador2.getVida()) {
 						vencedor = escolhaJogador1;
 							
@@ -149,6 +156,35 @@ public class Ring {
 
 					} 
 				
+				} else if (escolha == 3) {
+					
+					while (true) {
+						System.out.print("Insira um ID para deletar uma batalha: ")
+						int deletar = entrada.nextInt();
+						
+						if (deletar > 0) {
+							System.out.println("Deseja mesmo deletar a batalha? \n S - sim \n N - Não");
+							int simNao = entrada.next();
+							
+							if(simNao == 2) {
+								System.out.println("Cancelamento do registro a ser deletado.");
+								return deletar;
+
+							} else {
+								System.out.println(RepositorioBatalha.deletarBatalha(deletar));
+								System.out.println("Batalha deletada, o ID deletado é " + deletar);
+								
+							}
+						}
+					}
+					return deletar;
+
+				} else if(escolha == 4) {
+					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não \n 3 - Sair");
+					int criar = entrada.nextInt();
+
+					if (criar == 1)
+
 				} else {
 					System.out.println("Obrigado por jogar!");
 					break;
@@ -156,6 +192,7 @@ public class Ring {
 				}
 				
 			}
+		
 		} 
 		
 	}
