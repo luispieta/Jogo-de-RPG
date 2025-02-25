@@ -167,7 +167,7 @@ public class Ring {
 							System.out.println("Deseja mesmo deletar a batalha? \n S - sim \n N - Não");
 							String simNao = entrada.next();
 							
-							if(simNao == "n") {
+							if(simNao.equals("n")) {
 								System.out.println("Cancelamento do registro a ser deletado.");
 
 							} else {
