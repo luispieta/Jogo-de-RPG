@@ -85,6 +85,7 @@ public class Ring {
 			personagemRepositorio.salvarPersonagem(jaina);
 			
 			*/
+			
 
 			//While para sempre mostrar o MENU
 			while (true) {
@@ -159,31 +160,27 @@ public class Ring {
 				} else if (escolha == 3) {
 					
 					while (true) {
-						System.out.print("Insira um ID para deletar uma batalha: ")
+						System.out.print("Insira um ID para deletar uma batalha: ");
 						int deletar = entrada.nextInt();
 						
 						if (deletar > 0) {
 							System.out.println("Deseja mesmo deletar a batalha? \n S - sim \n N - Não");
-							int simNao = entrada.next();
+							String simNao = entrada.next();
 							
-							if(simNao == 2) {
+							if(simNao == "n") {
 								System.out.println("Cancelamento do registro a ser deletado.");
-								return deletar;
 
 							} else {
-								System.out.println(RepositorioBatalha.deletarBatalha(deletar));
+								System.out.println(batalhaRepositorio.deletarBatalha(deletar));
 								System.out.println("Batalha deletada, o ID deletado é " + deletar);
 								
 							}
 						}
 					}
-					return deletar;
 
 				} else if(escolha == 4) {
 					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não \n 3 - Sair");
-					int criar = entrada.nextInt();
-
-					if (criar == 1)
+					
 
 				} else {
 					System.out.println("Obrigado por jogar!");

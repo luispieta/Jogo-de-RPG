@@ -140,9 +140,9 @@ public class RepositorioBatalha {
         return batalha;
     }
 
-    public Batalha deletarBatalha(int id) {
+    public boolean deletarBatalha(int id) {
 
-        String sql = "DELETE FROM batalhas WHERE id_batalha = ?"
+        String sql = "DELETE FROM batalhas WHERE id_batalha = ?";
         boolean deletar = false;
 
         try(Connection conexao = DatabaseConnection.conectar();
@@ -153,21 +153,21 @@ public class RepositorioBatalha {
 
                 if (linhaAfetadas > 0 ){
 
-                    deletado = true;
-                    System.out.println("A batalha deletada foi como ID " + id + ". Deletado com sucesso!")
+                    deletar = true;
+                    System.out.println("A batalha deletada foi como ID " + id + ". Deletado com sucesso!");
                 
                 } else {
-                    System.out.println("A batalha selecionada não foi encontrada!")
+                    System.out.println("A batalha selecionada não foi encontrada!");
 
                 }
 
-        } catch (SQLException) {
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
         
-        return deletado;
-
+        return deletar;
+        
     }
 
 }
