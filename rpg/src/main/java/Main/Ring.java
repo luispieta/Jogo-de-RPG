@@ -186,7 +186,8 @@ public class Ring {
 					System.out.println("Obrigado por jogar!");
 					break;
 
-				}
+				} 
+					System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahaiiiiiii");
 				
 			}
 		
