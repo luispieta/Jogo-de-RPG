@@ -115,12 +115,28 @@ public class Ring {
 					
 					if (criarPersonagem == 2) {
 						break;
+
 					} else {
 						System.out.print("Escolha um nome para seu personagem: ");
 						String nomePersonagem = entrada.next();
 
-						System.out.println("Selecione um personagem")
+						System.out.println(personagemRepositorio.buscarTodosPersonagens());
+						System.out.print("Selecione um personagem: ");
+						int personagem = entrada.nextInt();
+						Personagem escolhaPersonagem = personagemRepositorio.buscarPersonagemPorId(personagem);
 
+						System.out.println(racaRepositorio.buscarTodasRacas());
+						System.out.print("Selecione uma raça: ");
+						int raca = entrada.nextInt();
+						Raca escolhaRaca = racaRepositorio.buscarRacaPorId(raca); 
+
+						System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
+						System.out.print("Selecione um arquétipo: ")
+						int arquetipo = entrada.nextInt();
+						Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo); 
+
+						
+						
 					}
 					
 
