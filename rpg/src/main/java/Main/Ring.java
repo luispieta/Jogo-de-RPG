@@ -110,7 +110,18 @@ public class Ring {
 					}
 
 				} else if(escolha == 4) {
-					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não \n 3 - Sair");
+					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não");
+					int criarPersonagem = entrada.nextInt();
+					
+					if (criarPersonagem == 2) {
+						break;
+					} else {
+						System.out.print("Escolha um nome para seu personagem: ");
+						String nomePersonagem = entrada.next();
+
+						System.out.println("Selecione um personagem")
+
+					}
 					
 
 				} else {
