@@ -12,10 +12,10 @@ import java.util.List;
 
 import BancoDeDados.DatabaseConnection;
 
-// Classe responsável por acessar e manipular os dados da entidade Raca no banco de dados
+// Classe responsável por acessar e manipular os dados da entidade Persoangem no banco de dados
 public class RepositorioPersonagem {
 	
-    // Método para salvar uma instância de Raca no banco de dados
+    // Método para salvar uma instância de Personagem no banco de dados
     public void salvarPersonagem(Personagem personagem) {
         // Comando SQL para inserir uma nova raça com os valores especificados
         String sql = "INSERT INTO personagens (nome, vida, escudo, poder_fisico, poder_habilidade, raca_id, arquetipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -36,25 +36,25 @@ public class RepositorioPersonagem {
             // Executa a inserção no banco de dados
             stmt.executeUpdate();
 
-            // Obtém as chaves geradas pelo banco (neste caso, o ID da raça inserida)
+            // Obtém as chaves geradas pelo banco (neste caso, o ID da Personagem inserida)
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
-                // Atribui o ID gerado à instância de Raca
+                // Atribui o ID gerado à instância de Personagem
             	personagem.setId(generatedKeys.getInt(1));
             }
 
-            // Mensagem de confirmação de que a raça foi salva com sucesso
+            // Mensagem de confirmação de que a Personagem foi salva com sucesso
             System.out.println("Personagem " + personagem.getNome() + " salva com ID " + personagem.getId());
 
-        } catch (SQLException e) {
             // Em caso de erro, imprime o stack trace para facilitar a identificação do problema
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Método para buscar todas as raças no banco de dados
+    // Método para buscar todas as Personagem no banco de dados
     public List<Personagem> buscarTodosPersonagens() {
-        // Lista para armazenar as raças encontradas
+        // Lista para armazenar as Personagem encontradas
         List<Personagem> personagem = new ArrayList<>();
         // Comando SQL para selecionar todas as raças
         String sql = "SELECT * FROM personagens";
@@ -87,17 +87,16 @@ public class RepositorioPersonagem {
             }
 
         } catch (SQLException e) {
-            // Em caso de erro, imprime o stack trace para facilitar a identificação do problema
             e.printStackTrace();
         }
 
-        // Retorna a lista de raças encontradas
+        // Retorna a lista de Personagem encontradas
         return personagem;
     }
 
     // Método para buscar uma raça específica pelo ID
     public Personagem buscarPersonagemPorId(int id) {
-        // Comando SQL para selecionar a raça pelo ID
+        // Comando SQL para selecionar a Personagem pelo ID
         String sql = "SELECT * FROM personagens WHERE id_personagem = ?";
         Personagem personagem = null;
 
@@ -109,7 +108,7 @@ public class RepositorioPersonagem {
             stmt.setInt(1, id);
             // Executa a consulta e obtém os resultados
             try (ResultSet rs = stmt.executeQuery()) {
-                // Verifica se a raça foi encontrada
+                // Verifica se a Personagem foi encontrada
                 if (rs.next()) {
                 	int racaId = rs.getInt("raca_id");
                 	int arquetipoId = rs.getInt("arquetipo_id");
@@ -134,11 +133,10 @@ public class RepositorioPersonagem {
             }
 
 	        } catch (SQLException e) {
-	            // Em caso de erro, imprime o stack trace para facilitar a identificação do problema
 	            e.printStackTrace();
 	        }
+        // Retorna a Personagem encontrada ou null se não existir
 	        return personagem;
 
-        // Retorna a raça encontrada ou null se não existir
     }
 }

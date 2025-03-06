@@ -135,7 +135,7 @@ public class Ring {
 						int arquetipo = entrada.nextInt();
 						Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo); 
 
-						
+						Personagem personagemCriado = new Personagem(nomePersonagem, escolhaPersonagem, escolhaRaca, escolhaArquetipo);
 						
 					}
 					
