@@ -1,13 +1,13 @@
 
 package Main;
 	
-import java.util.Scanner; 
-import Entidades.Personagem;
-import Entidades.Batalha;
+import java.util.Scanner;
+import Entidades.*;
 import Repositorio.RepositorioArquetipo;
 import Repositorio.RepositorioRaca;
 import Repositorio.RepositorioPersonagem;
 import Repositorio.RepositorioBatalha;
+import Repositorio.RepositorioCriarPersonagem;
 
 public class Ring {
 	public static void main(String[] args) {
@@ -17,6 +17,7 @@ public class Ring {
 			RepositorioBatalha batalhaRepositorio = new RepositorioBatalha(); 
 			RepositorioRaca racaRepositorio = new RepositorioRaca();
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
+			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
 
 			//While para sempre mostrar o MENU
 			while (true) {
@@ -89,22 +90,21 @@ public class Ring {
 					} 
 				
 				} else if (escolha == 3) {
-					
 					while (true) {
 						System.out.print("Insira um ID para deletar uma batalha: ");
 						int deletar = entrada.nextInt();
-						
+
 						if (deletar > 0) {
 							System.out.println("Deseja mesmo deletar a batalha? \n S - sim \n N - Não");
 							String simNao = entrada.next();
-							
+
 							if(simNao.equals("n")) {
 								System.out.println("Cancelamento do registro a ser deletado.");
 
 							} else {
 								System.out.println(batalhaRepositorio.deletarBatalha(deletar));
 								System.out.println("Batalha deletada, o ID deletado é " + deletar);
-								
+
 							}
 						}
 					}
@@ -128,17 +128,17 @@ public class Ring {
 						System.out.println(racaRepositorio.buscarTodasRacas());
 						System.out.print("Selecione uma raça: ");
 						int raca = entrada.nextInt();
-						Raca escolhaRaca = racaRepositorio.buscarRacaPorId(raca); 
+						Raca escolhaRaca = racaRepositorio.buscarRacaPorId(raca);
 
 						System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
-						System.out.print("Selecione um arquétipo: ")
+						System.out.print("Selecione um arquétipo: ");
 						int arquetipo = entrada.nextInt();
-						Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo); 
+						Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo);
 
-						Personagem personagemCriado = new Personagem(nomePersonagem, escolhaPersonagem, escolhaRaca, escolhaArquetipo);
-						
+						CriarPersonagem personagemCriado = new CriarPersonagem(nomePersonagem, escolhaPersonagem, escolhaRaca, escolhaArquetipo);
+						criarPersonagemRepositorio.salvarPersonagemCriado(personagemCriado);
+
 					}
-					
 
 				} else {
 					System.out.println("Obrigado por jogar!");

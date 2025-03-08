@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import BancoDeDados.DatabaseConnection;
 
 // Classe responsável por acessar e manipular os dados da entidade Persoangem no banco de dados

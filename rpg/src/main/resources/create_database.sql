@@ -40,4 +40,15 @@ create table if not exists batalhas(
     foreign key(lutador1_id) references personagens(id_personagem),
     foreign key(lutador2_id) references personagens(id_personagem),
     foreign key(vencedor_id) references personagens(id_personagem)
-);		
+);
+
+create table if not exists criar_personagem(
+    id_criar int not null primary key auto_increment,
+    nome varchar(150),
+    escolha_personagem int not null,
+    escolha_raca int not null,
+    escolha_arquetipo int not null,
+    foreign key(escolha_personagem) references personagens(id_personagem),
+    foreign key(escolha_raca) references racas(id_raca),
+    foreign key(escolha_arquetipo) references arquetipos(id_arquetipo)
+);
