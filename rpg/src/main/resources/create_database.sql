@@ -44,7 +44,7 @@ create table if not exists batalhas(
 
 create table if not exists criar_personagem(
     id_criar int not null primary key auto_increment,
-    nome varchar(150),
+    nome varchar(150) unique,
     escolha_personagem int not null,
     escolha_raca int not null,
     escolha_arquetipo int not null,

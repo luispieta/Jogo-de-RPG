@@ -118,6 +118,7 @@ public class Ring {
 
 					} else {
 						System.out.print("Escolha um nome para seu personagem: ");
+						entrada.nextLine();
 						String nomePersonagem = entrada.nextLine();
 
 						System.out.println(personagemRepositorio.buscarTodosPersonagens());
