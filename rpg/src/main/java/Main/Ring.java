@@ -14,7 +14,7 @@ public class Ring {
 
 		try (Scanner entrada = new Scanner(System.in)) {
 			RepositorioPersonagem personagemRepositorio = new RepositorioPersonagem();
-			RepositorioBatalha batalhaRepositorio = new RepositorioBatalha(); 
+			RepositorioBatalha batalhaRepositorio = new RepositorioBatalha();
 			RepositorioRaca racaRepositorio = new RepositorioRaca();
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
 			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
@@ -23,7 +23,7 @@ public class Ring {
 			while (true) {
 				//Selecionar rotina que deseja
 				System.out.println("===== MENU =====");
-				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Deletar batalha \n 4 - Sair");
+				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Deletar batalha \n 4 - Criar seu próprio Personagem \n 5 - Sair");
 				int escolha = entrada.nextInt();
 				System.out.print("\n");
 
@@ -75,7 +75,7 @@ public class Ring {
 							System.out.println(racaRepositorio.buscarTodasRacas());
 
 						} else if (consultar == 3) {
-							System.out.println("Todos as Persongens");
+							System.out.println("Todos as Personagens");
 							System.out.println(personagemRepositorio.buscarTodosPersonagens());
 
 						} else if (consultar == 4) {
@@ -112,13 +112,13 @@ public class Ring {
 				} else if(escolha == 4) {
 					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não");
 					int criarPersonagem = entrada.nextInt();
-					
+
 					if (criarPersonagem == 2) {
 						break;
 
 					} else {
 						System.out.print("Escolha um nome para seu personagem: ");
-						String nomePersonagem = entrada.next();
+						String nomePersonagem = entrada.nextLine();
 
 						System.out.println(personagemRepositorio.buscarTodosPersonagens());
 						System.out.print("Selecione um personagem: ");

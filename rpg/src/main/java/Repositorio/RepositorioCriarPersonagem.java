@@ -14,13 +14,14 @@ public class RepositorioCriarPersonagem {
         String sql = "INSERT INTO criar_personagem (nome, escolha_personagem, escolha_raca, escolha_arquetipo) VALUES (?, ?, ?, ?)";
 
         try(Connection conexao = DatabaseConnection.conectar();
-            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            PreparedStatement stmt = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
                 stmt.setString(1, criarPersonagem.getNome());
                 stmt.setInt(2, criarPersonagem.getPersonagem().getId());
                 stmt.setInt(3, criarPersonagem.getRaca().getId());
-                stmt.setInt(4, criarPersonagem.getRaca().getId());
-                stmt.setInt(5, criarPersonagem.getArquetipo().getId());
+                stmt.setInt(4, criarPersonagem.getArquetipo().getId());
+
+                stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
