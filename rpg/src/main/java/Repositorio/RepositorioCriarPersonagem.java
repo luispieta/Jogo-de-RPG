@@ -1,11 +1,19 @@
 package Repositorio;
 
-import Entidades.CriarPersonagem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import BancoDeDados.DatabaseConnection;
+import Entidades.Arquetipo;
+import Entidades.CriarPersonagem;
+import Entidades.Personagem;
+import Entidades.Raca;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.Result;
 
 public class RepositorioCriarPersonagem {
 
@@ -35,6 +43,44 @@ public class RepositorioCriarPersonagem {
 
         }
 
+    }
+
+    public List<CriarPersonagem> buscarTodosPersonagensCriados() {
+
+        List<CriarPersonagem> criarPersonagem = new ArrayList<>();
+        String sql = "SELECT * FROM criar_personagem";
+
+        try (Connection conexao = DatabaseConnection.conectar();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while(rs.next()) {
+                CriarPersonagem criarPersonagens = new CriarPersonagem();
+                criarPersonagens.setId(rs.getInt("id_criar"));
+                criarPersonagens.setNome(rs.getString("nome"));
+
+                Personagem personagem = new Personagem();
+                personagem.setId(rs.getInt("escolha_personagem"));
+                criarPersonagens.setPersonagem(personagem);
+
+                Raca raca = new Raca();
+                raca.setId(rs.getInt("escolha_raca"));
+                criarPersonagens.setRaca(raca);
+
+                Arquetipo arquetipo = new Arquetipo();
+                arquetipo.setId(rs.getInt("escolha_arquetipo"));
+                criarPersonagens.setArquetipo(arquetipo);
+
+                criarPersonagem.add(criarPersonagens);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return criarPersonagem;
     }
 
 }

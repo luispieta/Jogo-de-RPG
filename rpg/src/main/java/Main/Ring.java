@@ -19,32 +19,62 @@ public class Ring {
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
 			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
 
+			System.out.println("===== MENU =====");
+			System.out.println("Qual deseja acessar? \n 1 - Menu de criação \n 2 - Menu de Batalhas");
+			int acessarMenu = entrada.nextInt();
+
+			if (acessarMenu == 2) {
+				System.out.println("Acesse com seu Login e Senha");
+				System.out.println("Insirá seu Login");
+				String login = entrada.next();
+				System.out.println("Insirá sua senha");
+				String senha = entrada.next();
+
+
+
+			} else {
+
+
+			}
 			//While para sempre mostrar o MENU
 			while (true) {
 				//Selecionar rotina que deseja
-				System.out.println("===== MENU =====");
+				System.out.println("===== MENU DE BATALHAS =====");
 				System.out.println("Escolha uma opção \n 1 - Começar uma batalha \n 2 - Consultar dados \n 3 - Deletar batalha \n 4 - Criar seu próprio Personagem \n 5 - Sair");
 				int escolha = entrada.nextInt();
 				System.out.print("\n");
 
 				//IFs para escolher alguma rotina
 				if (escolha == 1) {
-					//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
-					System.out.println(personagemRepositorio.buscarTodosPersonagens());
-					System.out.println("Escolha um personagem digitando de 1 a 10");
+					System.out.println("Digite para selecionar seu personagem \n 1 - Personagem do sistema \n 2 - Personagem que criou \n 3 - Sair");
 
 					System.out.print("Jogador 1: ");
 					int escolha1 = entrada.nextInt();
 					System.out.print("Jogador 2: ");
 					int escolha2 = entrada.nextInt();
-								
-					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
-					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
+
+					if (escolha1  == 3) {
+						break;
+
+					} else if (selecaoPersonagem == 2){
+						System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
+						System.out.println("Escolha um personagem digitando pelo número do ID");
+
+
+					} else {
+						//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
+						System.out.println(personagemRepositorio.buscarTodosPersonagens());
+						System.out.println("Escolha um personagem digitando pelo número do ID");
+
+
+						Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
+						Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
+
+					}
 
 					//Resultado NULL para dizer que não tem nem um jogador como vencedor
 					Personagem vencedor = null;
-							
-					
+
 					if (escolhaJogador1.getVida() > escolhaJogador2.getVida()) {
 						vencedor = escolhaJogador1;
 							

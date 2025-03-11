@@ -52,3 +52,9 @@ create table if not exists criar_personagem(
     foreign key(escolha_raca) references racas(id_raca),
     foreign key(escolha_arquetipo) references arquetipos(id_arquetipo)
 );
+
+create table if not exists usuario(
+	id int not null auto_increment primary key,
+    login varchar(150) not null unique,
+    senha varchar(150) not null
+);
