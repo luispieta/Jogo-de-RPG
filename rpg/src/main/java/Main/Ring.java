@@ -53,10 +53,10 @@ public class Ring {
 					System.out.print("Jogador 2: ");
 					int escolha2 = entrada.nextInt();
 
-					if (escolha1  == 3) {
+					if (escolha1 == 3 || escolha2 == 3) {
 						break;
 
-					} else if (selecaoPersonagem == 2){
+					} else if (escolha1 == 2 || escolha2 == 2){
 						System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
 						System.out.println("Escolha um personagem digitando pelo número do ID");
 
@@ -66,11 +66,10 @@ public class Ring {
 						System.out.println(personagemRepositorio.buscarTodosPersonagens());
 						System.out.println("Escolha um personagem digitando pelo número do ID");
 
-
-						Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
-						Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
-
 					}
+
+					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
+					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
 
 					//Resultado NULL para dizer que não tem nem um jogador como vencedor
 					Personagem vencedor = null;
@@ -173,6 +172,7 @@ public class Ring {
 
 				} else {
 					System.out.println("Obrigado por jogar!");
+					System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
 					break;
 
 				} 

@@ -55,6 +55,9 @@ create table if not exists criar_personagem(
 
 create table if not exists usuario(
 	id int not null auto_increment primary key,
+    nome varchar(150),
     login varchar(150) not null unique,
-    senha varchar(150) not null
+    senha text not null,
+    email varchar(150),
+    telefone varchar(150)
 );
