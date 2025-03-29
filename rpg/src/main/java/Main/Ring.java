@@ -18,9 +18,10 @@ public class Ring {
 			RepositorioRaca racaRepositorio = new RepositorioRaca();
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
 			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
+			Personagem entidadePersonagem = new Personagem();
 
 			System.out.println("===== MENU =====");
-			System.out.println("Qual deseja acessar? \n 1 - Menu de criação \n 2 - Menu de Batalhas");
+			System.out.println("Qual deseja acessar? \n 1 - Menu do Gestor/Desenvolvedor \n 2 - Menu de Batalhas");
 			int acessarMenu = entrada.nextInt();
 
 			if (acessarMenu == 2) {
@@ -29,8 +30,6 @@ public class Ring {
 				String login = entrada.next();
 				System.out.println("Insirá sua senha");
 				String senha = entrada.next();
-
-
 
 			} else {
 
@@ -50,26 +49,19 @@ public class Ring {
 
 					System.out.print("Jogador 1: ");
 					int escolha1 = entrada.nextInt();
+					entidadePersonagem.escolhaPersonagem(escolha1);
+					System.out.print("Escolha o personagem: ");
+					int personagemEscolhido1 = entrada.nextInt();
+
+					System.out.println("Digite para selecionar seu personagem \n 1 - Personagem do sistema \n 2 - Personagem que criou \n 3 - Sair");
 					System.out.print("Jogador 2: ");
 					int escolha2 = entrada.nextInt();
+					entidadePersonagem.escolhaPersonagem(escolha2);
+					System.out.print("Escolha o personagem: ");
+					int personagemEscolhido2 = entrada.nextInt();
 
-					if (escolha1 == 3 || escolha2 == 3) {
-						break;
-
-					} else if (escolha1 == 2 || escolha2 == 2){
-						System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
-						System.out.println("Escolha um personagem digitando pelo número do ID");
-
-
-					} else {
-						//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
-						System.out.println(personagemRepositorio.buscarTodosPersonagens());
-						System.out.println("Escolha um personagem digitando pelo número do ID");
-
-					}
-
-					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(escolha1);
-					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(escolha2);
+					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido1);
+					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido2);
 
 					//Resultado NULL para dizer que não tem nem um jogador como vencedor
 					Personagem vencedor = null;

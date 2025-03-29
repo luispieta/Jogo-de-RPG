@@ -1,13 +1,19 @@
 package Entidades;
 
+import Repositorio.RepositorioCriarPersonagem;
+import Repositorio.RepositorioPersonagem;
+
 //Classe PERSONAGENS Herdada de LUTADOR
 public class Personagem extends Lutador{
-	
+
+	RepositorioPersonagem personagemRepositorio = new RepositorioPersonagem();
+	RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
+
 	//Aributos
 	protected int id;
 	public Raca raca;	
 	private Arquetipo arquetipo;
-	
+
 	public Personagem() {
 		
 	}
@@ -46,6 +52,21 @@ public class Personagem extends Lutador{
 
 	public void setArquetipo(Arquetipo arquetipo) {
 		this.arquetipo = arquetipo;
+	}
+
+	public void escolhaPersonagem(int escolha) {
+
+		while(escolha != 3) {
+			if (escolha == 2) {
+				System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
+
+			} else {
+				//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
+				System.out.println(personagemRepositorio.buscarTodosPersonagens());
+
+			}
+			break;
+		}
 	}
 	
 	//Método para visualizar Atríbutos dos Personagens
