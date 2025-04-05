@@ -19,6 +19,7 @@ public class Ring {
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
 			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
 			Personagem entidadePersonagem = new Personagem();
+			CriarPersonagem criarPersonagem = new CriarPersonagem();
 
 			System.out.println("===== MENU =====");
 			System.out.println("Qual deseja acessar? \n 1 - Menu do Gestor/Desenvolvedor \n 2 - Menu de Batalhas");
@@ -46,7 +47,6 @@ public class Ring {
 				//IFs para escolher alguma rotina
 				if (escolha == 1) {
 					System.out.println("Digite para selecionar seu personagem \n 1 - Personagem do sistema \n 2 - Personagem que criou \n 3 - Sair");
-
 					System.out.print("Jogador 1: ");
 					int escolha1 = entrada.nextInt();
 					entidadePersonagem.escolhaPersonagem(escolha1);
@@ -59,6 +59,11 @@ public class Ring {
 					entidadePersonagem.escolhaPersonagem(escolha2);
 					System.out.print("Escolha o personagem: ");
 					int personagemEscolhido2 = entrada.nextInt();
+
+					/*deve criar um paramêtro para receber a função da escolha
+					escolha1 = entidadePersonagem.seletor(personagemEscolhido1);
+					escolha2 = entidadePersonagem.seletor(personagemEscolhido1);*/
+
 
 					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido1);
 					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido2);
@@ -132,35 +137,8 @@ public class Ring {
 
 				} else if(escolha == 4) {
 					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não");
-					int criarPersonagem = entrada.nextInt();
-
-					if (criarPersonagem == 2) {
-						break;
-
-					} else {
-						System.out.print("Escolha um nome para seu personagem: ");
-						entrada.nextLine();
-						String nomePersonagem = entrada.nextLine();
-
-						System.out.println(personagemRepositorio.buscarTodosPersonagens());
-						System.out.print("Selecione um personagem: ");
-						int personagem = entrada.nextInt();
-						Personagem escolhaPersonagem = personagemRepositorio.buscarPersonagemPorId(personagem);
-
-						System.out.println(racaRepositorio.buscarTodasRacas());
-						System.out.print("Selecione uma raça: ");
-						int raca = entrada.nextInt();
-						Raca escolhaRaca = racaRepositorio.buscarRacaPorId(raca);
-
-						System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
-						System.out.print("Selecione um arquétipo: ");
-						int arquetipo = entrada.nextInt();
-						Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo);
-
-						CriarPersonagem personagemCriado = new CriarPersonagem(nomePersonagem, escolhaPersonagem, escolhaRaca, escolhaArquetipo);
-						criarPersonagemRepositorio.salvarPersonagemCriado(personagemCriado);
-
-					}
+					int criar = entrada.nextInt();
+					criarPersonagem.personagensCriar(criar);
 
 				} else {
 					System.out.println("Obrigado por jogar!");

@@ -3,6 +3,8 @@ package Entidades;
 import Repositorio.RepositorioCriarPersonagem;
 import Repositorio.RepositorioPersonagem;
 
+import java.util.Scanner;
+
 //Classe PERSONAGENS Herdada de LUTADOR
 public class Personagem extends Lutador{
 
@@ -54,21 +56,42 @@ public class Personagem extends Lutador{
 		this.arquetipo = arquetipo;
 	}
 
-	public void escolhaPersonagem(int escolha) {
+	public int escolhaPersonagem(int escolha) {
+		//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
+		while(true) {
+			if (escolha == 3) {
+				break;
 
-		while(escolha != 3) {
-			if (escolha == 2) {
+			} else if (escolha == 2) {
 				System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
 
-			} else {
-				//Consultar personagens, assim escolhendo para poder jogar contra o outro jogador
+			} else if (escolha == 1) {
 				System.out.println(personagemRepositorio.buscarTodosPersonagens());
 
+			} else {
+				System.out.println("Número inválido");
+				return escolha;
 			}
 			break;
 		}
+
+        return escolha;
+    }
+
+	public void seletor(int personagemJogadores) {
+        if (escolhaPersonagem(2) == 2) {
+			CriarPersonagem escolhidoCriar = criarPersonagemRepositorio.buscarCriarPersonagemPorId(personagemJogadores);
+
+        } else if (escolhaPersonagem(1) == 1) {
+        	Personagem escolhidoPersonagem = personagemRepositorio.buscarPersonagemPorId(personagemJogadores);
+
+		} else {
+			System.out.println("Número inválido");
+
+		}
+
 	}
-	
+
 	//Método para visualizar Atríbutos dos Personagens
 	public String toString() {
 		return "id = " + this.getId()  + ",\n nome = " + this.getNome() + ",\n vida = " + this.getVida() + ",\n escudo = " + this.getEscudo() + 

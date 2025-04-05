@@ -83,4 +83,45 @@ public class RepositorioCriarPersonagem {
         return criarPersonagem;
     }
 
+    public CriarPersonagem buscarCriarPersonagemPorId(int id){
+
+        String sql = "SELECT * FROM criar_personagem WHERE id = ?";
+        CriarPersonagem criarPersonagem = null;
+
+        try(Connection conexao = DatabaseConnection.conectar();
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if(rs.next()) {
+                    int racaId = rs.getInt ("escolha_raca");
+                    int arquetipoId = rs.getInt("escolha_arquetipo");
+                    int personagemId = rs.getInt("escolha_personagem");
+
+                    criarPersonagem = new CriarPersonagem();
+                    criarPersonagem.setId(rs.getInt("id_criar"));
+
+                    RepositorioRaca repositorioRaca = new RepositorioRaca();
+                    Raca raca = repositorioRaca.buscarRacaPorId(racaId);
+                    criarPersonagem.setRaca(raca);
+
+                    RepositorioArquetipo repositorioArquetipo = new RepositorioArquetipo();
+                    Arquetipo arquetipo = repositorioArquetipo.buscarArquetipoPorId(arquetipoId);
+                    criarPersonagem.setArquetipo(arquetipo);
+
+                    RepositorioPersonagem repositorioPersonagem = new RepositorioPersonagem();
+                    Personagem personagem = repositorioPersonagem.buscarPersonagemPorId(personagemId);
+                    criarPersonagem.setPersonagem(personagem);
+
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return criarPersonagem;
+
+    }
+
 }

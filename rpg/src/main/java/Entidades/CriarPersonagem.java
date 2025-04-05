@@ -2,8 +2,15 @@ package Entidades;
 import Entidades.Arquetipo;
 import Entidades.Personagem;
 import Entidades.Raca;
+import Repositorio.*;
+
+import java.util.Scanner;
 
 public class CriarPersonagem {
+    RepositorioPersonagem personagemRepositorio = new RepositorioPersonagem();
+    RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
+    RepositorioRaca racaRepositorio = new RepositorioRaca();
+    RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
 
     protected int id;
     public String nome;
@@ -52,4 +59,41 @@ public class CriarPersonagem {
     public void setRaca(Raca raca) {
         this.raca = raca;
     }
+
+    public void personagensCriar(int criar){
+        Scanner entrada = new Scanner(System.in);
+
+        while (true) {
+            if (criar == 2) {
+                break;
+
+            } else {
+                System.out.print("Escolha um nome para seu personagem: ");
+                String nomePersonagem = entrada.nextLine();
+
+                System.out.println(personagemRepositorio.buscarTodosPersonagens());
+                System.out.print("Selecione um personagem: ");
+                int personagem = entrada.nextInt();
+                Personagem escolhaPersonagem = personagemRepositorio.buscarPersonagemPorId(personagem);
+
+                System.out.println(racaRepositorio.buscarTodasRacas());
+                System.out.print("Selecione uma raça: ");
+                int raca = entrada.nextInt();
+                Raca escolhaRaca = racaRepositorio.buscarRacaPorId(raca);
+
+                System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
+                System.out.print("Selecione um arquétipo: ");
+                int arquetipo = entrada.nextInt();
+                Arquetipo escolhaArquetipo = arquetipoRepositorio.buscarArquetipoPorId(arquetipo);
+
+                CriarPersonagem personagemCriado = new CriarPersonagem(nomePersonagem, escolhaPersonagem, escolhaRaca, escolhaArquetipo);
+                criarPersonagemRepositorio.salvarPersonagemCriado(personagemCriado);
+
+            }
+            break;
+
+        }
+
+    }
+
 }
