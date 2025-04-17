@@ -1,6 +1,7 @@
 
 package Main;
 	
+import java.nio.channels.Selector;
 import java.util.Scanner;
 import Entidades.*;
 import Repositorio.RepositorioArquetipo;
@@ -18,7 +19,6 @@ public class Ring {
 			RepositorioRaca racaRepositorio = new RepositorioRaca();
 			RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
 			RepositorioCriarPersonagem criarPersonagemRepositorio = new RepositorioCriarPersonagem();
-			Personagem entidadePersonagem = new Personagem();
 			CriarPersonagem criarPersonagem = new CriarPersonagem();
 
 			System.out.println("===== MENU =====");
@@ -46,42 +46,29 @@ public class Ring {
 
 				//IFs para escolher alguma rotina
 				if (escolha == 1) {
-					System.out.println("Digite para selecionar seu personagem \n 1 - Personagem do sistema \n 2 - Personagem que criou \n 3 - Sair");
-					System.out.print("Jogador 1: ");
-					int escolha1 = entrada.nextInt();
-					entidadePersonagem.escolhaPersonagem(escolha1);
-					System.out.print("Escolha o personagem: ");
-					int personagemEscolhido1 = entrada.nextInt();
 
-					System.out.println("Digite para selecionar seu personagem \n 1 - Personagem do sistema \n 2 - Personagem que criou \n 3 - Sair");
-					System.out.print("Jogador 2: ");
-					int escolha2 = entrada.nextInt();
-					entidadePersonagem.escolhaPersonagem(escolha2);
-					System.out.print("Escolha o personagem: ");
-					int personagemEscolhido2 = entrada.nextInt();
+					IniciarBatalha iniciarBatalha = new IniciarBatalha(personagemRepositorio, criarPersonagemRepositorio);
 
-					/*deve criar um paramêtro para receber a função da escolha
-					escolha1 = entidadePersonagem.seletor(personagemEscolhido1);
-					escolha2 = entidadePersonagem.seletor(personagemEscolhido1);*/
+					System.out.println("Jogador 1, escolha uma opção:");
+					Object jogador1 = iniciarBatalha.escolherPersonagem();
 
-
-					Personagem escolhaJogador1 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido1);
-					Personagem escolhaJogador2 = personagemRepositorio.buscarPersonagemPorId(personagemEscolhido2);
+					System.out.println("Jogador 2, escolha uma opção:");
+					Object jogador2 = iniciarBatalha.escolherPersonagem();
 
 					//Resultado NULL para dizer que não tem nem um jogador como vencedor
-					Personagem vencedor = null;
+					Object vencedor = null;
 
-					if (escolhaJogador1.getVida() > escolhaJogador2.getVida()) {
-						vencedor = escolhaJogador1;
+                    if (jogador1.getVida() > jogador2.getVida()) {
+						vencedor = jogador1;
 							
-					} else if (escolhaJogador2.getVida() > escolhaJogador1.getVida()) {
-						vencedor = escolhaJogador2;
+					} else if (jogador2.getVida() > jogador1.getVida()) {
+						vencedor = jogador2;
 					
 					} else {
 						System.out.println("Empate!");
 					}
 				
-					Batalha batalhas = new Batalha(escolhaJogador1, escolhaJogador2, vencedor);
+					Batalha batalhas = new Batalha(jogador1, jogador2, vencedor);
 					batalhas.iniciar();
 					batalhaRepositorio.salvarBatalha(batalhas);
 
