@@ -1,12 +1,9 @@
 package Entidades;
-import Entidades.Arquetipo;
-import Entidades.Personagem;
-import Entidades.Raca;
 import Repositorio.*;
 
 import java.util.Scanner;
 
-public class CriarPersonagem {
+public class CriarPersonagem extends Lutador {
     RepositorioPersonagem personagemRepositorio = new RepositorioPersonagem();
     RepositorioArquetipo arquetipoRepositorio = new RepositorioArquetipo();
     RepositorioRaca racaRepositorio = new RepositorioRaca();
@@ -18,15 +15,18 @@ public class CriarPersonagem {
     protected Raca raca;
     protected Arquetipo arquetipo;
 
-    public CriarPersonagem() {
-
-    }
+    public CriarPersonagem() {}
 
     public CriarPersonagem(String nome, Personagem personagem, Raca raca, Arquetipo arquetipo) {
         this.nome = nome;
         this.personagem = personagem;
         this.raca = raca;
         this.arquetipo = arquetipo;
+
+        this.vida = personagem.getVida() + raca.getVida() + arquetipo.getVida();
+        this.escudo = personagem.getEscudo() + raca.getEscudo() + arquetipo.getEscudo();
+        this.poderFisico = personagem.getPoderFisico() + raca.getPoderFisico() + arquetipo.getPoderFisico();
+        this.poderHabilidade = personagem.getPoderHabilidade() + raca.getPoderHabilidade() + arquetipo.getPoderHabilidade();
     }
 
     public int getId() {

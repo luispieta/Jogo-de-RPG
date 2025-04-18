@@ -3,6 +3,7 @@ package Entidades;
 //Classe abstrata
 public abstract class Lutador {
 
+	protected int id;
 	protected String nome;
 	protected int vida;
 	protected int escudo;
@@ -11,6 +12,8 @@ public abstract class Lutador {
 	protected int dado;
 	
 //	Atributos
+	public int getId() { return id; }
+	public void setId(int id) { this.id = id; }
 	public String getNome() {
 		return nome;
 	}
@@ -29,9 +32,7 @@ public abstract class Lutador {
 	public void setEscudo(int escudo) {
 		this.escudo = escudo;
 	}
-	public int getPoderFisico() {
-		return poderFisico;
-	}
+	public int getPoderFisico() { return poderFisico; }
 	public void setPoderFisico(int poderFisico) {
 		this.poderFisico = poderFisico;
 	}

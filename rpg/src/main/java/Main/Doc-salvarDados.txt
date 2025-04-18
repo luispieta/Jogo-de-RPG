@@ -63,3 +63,6 @@ personagemRepositorio.salvarPersonagem(chenstormstout);
 
 Personagem jaina = new Personagem("Jaina", 1000 + dragao.getVida() + xama.getVida(), 250 + dragao.getEscudo() + xama.getEscudo(), 95 + dragao.getPoderFisico() + xama.getPoderFisico(), 50 + dragao.getPoderHabilidade() + xama.getPoderHabilidade(), dragao, xama);
 personagemRepositorio.salvarPersonagem(jaina);
+
+Personagem personagem = new Personagem("Cleiton Arrasta", 10000, 500, 250, 600, racaRepositorio.buscarRacaPorId(4), arquetipoRepositorio.buscarArquetipoPorId(1));
+personagemRepositorio.salvarPersonagem(personagem);

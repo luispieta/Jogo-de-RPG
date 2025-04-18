@@ -1,7 +1,7 @@
 package Entidades;
 
 //Classe PERSONAGENS Herdada de LUTADOR
-public class Personagem extends Lutador{
+public class Personagem extends Lutador {
 
 	//Aributos
 	protected int id;
@@ -21,6 +21,11 @@ public class Personagem extends Lutador{
 		this.poderHabilidade = poderHabilidade;
 		this.raca = raca;
 		this.arquetipo = arquetipo;
+
+		this.vida = getVida() + raca.getVida() + arquetipo.getVida();
+		this.escudo = getEscudo() + raca.getEscudo() + arquetipo.getEscudo();
+		this.poderFisico = getPoderFisico() + raca.getPoderFisico() + arquetipo.getPoderFisico();
+		this.poderHabilidade = getPoderHabilidade() + raca.getPoderHabilidade() + arquetipo.getPoderHabilidade();
 	}
 
 	//Abributos Getteres e Setteres

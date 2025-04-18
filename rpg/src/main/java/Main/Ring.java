@@ -34,7 +34,6 @@ public class Ring {
 
 			} else {
 
-
 			}
 			//While para sempre mostrar o MENU
 			while (true) {
@@ -50,20 +49,20 @@ public class Ring {
 					IniciarBatalha iniciarBatalha = new IniciarBatalha(personagemRepositorio, criarPersonagemRepositorio);
 
 					System.out.println("Jogador 1, escolha uma opção:");
-					Object jogador1 = iniciarBatalha.escolherPersonagem();
+					Lutador jogador1 = iniciarBatalha.escolherPersonagem();
 
 					System.out.println("Jogador 2, escolha uma opção:");
-					Object jogador2 = iniciarBatalha.escolherPersonagem();
+					Lutador jogador2 = iniciarBatalha.escolherPersonagem();
 
 					//Resultado NULL para dizer que não tem nem um jogador como vencedor
-					Object vencedor = null;
+					Lutador vencedor = null;
 
                     if (jogador1.getVida() > jogador2.getVida()) {
 						vencedor = jogador1;
-							
+
 					} else if (jogador2.getVida() > jogador1.getVida()) {
 						vencedor = jogador2;
-					
+
 					} else {
 						System.out.println("Empate!");
 					}

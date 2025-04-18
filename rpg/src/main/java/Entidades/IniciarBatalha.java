@@ -17,29 +17,31 @@ public class IniciarBatalha {
         this.repositorioCriarPersonagem = rcp;
     }
 
-    public Object escolherPersonagem() {
+    public Lutador escolherPersonagem() {
 
         while (true) {
             System.out.println("1 - Personagem do sistema");
             System.out.println("2 - Personagem criado pelo usuário");
             System.out.println("3 - Sair");
             System.out.println("Escolha uma opção:");
-            int escolha = entrada.nextInt();
+            int tipo = entrada.nextInt();
 
-            if (escolha == 3) {
+            if (tipo == 3) {
                 return null;
 
-            } else if (escolha == 2) {
+            } else if (tipo == 2) {
                 System.out.println("=== PERSONAGENS CRIADOS ===");
                 System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
                 System.out.println("Escolha um personagem para batalhar (digite o ID):");
+                int escolha = entrada.nextInt();
 
                 return criarPersonagemRepositorio.buscarCriarPersonagemPorId(escolha);
 
-            } else if (escolha == 1) {
+            } else if (tipo == 1) {
                 System.out.println("=== PERSONAGENS DO SISTEMA ===");
                 System.out.println(personagemRepositorio.buscarTodosPersonagens());
                 System.out.println("Escolha um personagem para batalhar (digite o ID):");
+                int escolha = entrada.nextInt();
 
                 return personagemRepositorio.buscarPersonagemPorId(escolha);
 
