@@ -93,7 +93,6 @@ public class CriarPersonagem extends Lutador {
     }
 
     public void aplicandoPersonagemEmCriarPersonagem() {
-
         if (this.personagem != null && this.raca != null && this.arquetipo != null) {
             this.setVida(personagem.getVida() + raca.getVida() + arquetipo.getVida());
             this.setEscudo(personagem.getEscudo() + raca.getEscudo() + arquetipo.getEscudo());

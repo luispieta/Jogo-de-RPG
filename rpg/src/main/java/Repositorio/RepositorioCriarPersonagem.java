@@ -9,9 +9,14 @@
     import java.util.ArrayList;
     import java.util.List;
 
-    import javax.xml.transform.Result;
-
     public class RepositorioCriarPersonagem {
+
+        RepositorioPersonagem repositorioPersonagem = new RepositorioPersonagem();
+        RepositorioRaca repositorioRaca = new RepositorioRaca();
+        RepositorioArquetipo repositorioArquetipo = new RepositorioArquetipo();
+        Personagem personagem = new Personagem();
+        Raca raca = new Raca();
+        Arquetipo arquetipo = new Arquetipo();
 
         public void salvarPersonagemCriado(CriarPersonagem criarPersonagem) {
 
@@ -55,21 +60,16 @@
                     criarPersonagens.setId(rs.getInt("id_criar"));
                     criarPersonagens.setNome(rs.getString("nome"));
 
-                    Personagem personagem = new Personagem();
-                    personagem.setId(rs.getInt("escolha_personagem"));
+                    Personagem personagem = repositorioPersonagem.buscarPersonagemPorId(rs.getInt("escolha_personagem"));
                     criarPersonagens.setPersonagem(personagem);
 
-
-                    Raca raca = new Raca();
-                    raca.setId(rs.getInt("escolha_raca"));
+                    Raca raca = repositorioRaca.buscarRacaPorId(rs.getInt("escolha_raca"));
                     criarPersonagens.setRaca(raca);
 
-                    Arquetipo arquetipo = new Arquetipo();
-                    arquetipo.setId(rs.getInt("escolha_arquetipo"));
+                    Arquetipo arquetipo = repositorioArquetipo.buscarArquetipoPorId(rs.getInt("escolha_arquetipo"));
                     criarPersonagens.setArquetipo(arquetipo);
 
                     criarPersonagens.aplicandoPersonagemEmCriarPersonagem();
-
                     criarPersonagem.add(criarPersonagens);
 
                 }
@@ -93,27 +93,22 @@
                 stmt.setInt(1, id);
                 try (ResultSet rs = stmt.executeQuery()) {
                     if(rs.next()) {
+
                         criarPersonagem = new CriarPersonagem();
                         criarPersonagem.setId(rs.getInt("id_criar"));
                         criarPersonagem.setNome(rs.getString("nome"));
 
-                        int personagemId = rs.getInt("escolha_personagem");
-                        int racaId = rs.getInt ("escolha_raca");
-                        int arquetipoId = rs.getInt("escolha_arquetipo");
-
-                        RepositorioPersonagem repositorioPersonagem = new RepositorioPersonagem();
-                        Personagem personagem = repositorioPersonagem.buscarPersonagemPorId(personagemId);
+                        Personagem personagem = repositorioPersonagem.buscarPersonagemPorId(rs.getInt("escolha_personagem"));
                         criarPersonagem.setPersonagem(personagem);
 
-                        RepositorioRaca repositorioRaca = new RepositorioRaca();
-                        Raca raca = repositorioRaca.buscarRacaPorId(racaId);
+                        Raca raca = repositorioRaca.buscarRacaPorId(rs.getInt("escolha_raca"));
                         criarPersonagem.setRaca(raca);
 
-                        RepositorioArquetipo repositorioArquetipo = new RepositorioArquetipo();
-                        Arquetipo arquetipo = repositorioArquetipo.buscarArquetipoPorId(arquetipoId);
+                        Arquetipo arquetipo = repositorioArquetipo.buscarArquetipoPorId(rs.getInt("escolha_arquetipo"));
                         criarPersonagem.setArquetipo(arquetipo);
 
                         criarPersonagem.aplicandoPersonagemEmCriarPersonagem();
+
                     }
 
                 }

@@ -63,6 +63,7 @@ public class Personagem extends Lutador {
 				",\n Arquetipo = " + arquetipo.getId() +
 				",\n Valor do dado = " + this.getDado() +
 				"\n \n";
+
 	}
 	
 }
