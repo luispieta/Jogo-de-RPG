@@ -8,9 +8,7 @@ public class Personagem extends Lutador {
 	private Raca raca;
 	private Arquetipo arquetipo;
 
-	public Personagem() {
-		
-	}
+	public Personagem() { }
 	
 	//Abrituto Construtor
 	public Personagem(String nome, int vida, int escudo, int poderFisico, int poderHabilidade, Raca raca, Arquetipo arquetipo) {
@@ -55,8 +53,16 @@ public class Personagem extends Lutador {
 
 	//Método para visualizar Atríbutos dos Personagens
 	public String toString() {
-		return "id = " + this.getId()  + ",\n nome = " + this.getNome() + ",\n vida = " + this.getVida() + ",\n escudo = " + this.getEscudo() + 
-				",\n Poder Físico = " + this.getPoderFisico() + ",\n Poder Habilidade = " + this.getPoderHabilidade() + ",\n Raca = " + raca.getId() + ",\n Arquetipo = " + arquetipo.getId() +",\n Valor do dado = " + this.getDado() + "\n \n";
+		return "id = " + this.getId()  +
+				",\n nome = " + this.getNome() +
+				",\n vida = " + this.getVida() +
+				",\n escudo = " + this.getEscudo() +
+				",\n Poder Físico = " + this.getPoderFisico() +
+				",\n Poder Habilidade = " + this.getPoderHabilidade() +
+				",\n Raca = " + raca.getId() +
+				",\n Arquetipo = " + arquetipo.getId() +
+				",\n Valor do dado = " + this.getDado() +
+				"\n \n";
 	}
 	
 }

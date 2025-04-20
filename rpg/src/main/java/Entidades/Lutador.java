@@ -97,5 +97,16 @@ public abstract class Lutador {
 			
 		} 
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Lutador{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", vida=" + vida +
+				", escudo=" + escudo +
+				", poderFisico=" + poderFisico +
+				", poderHabilidade=" + poderHabilidade +
+				'}';
+	}
 }

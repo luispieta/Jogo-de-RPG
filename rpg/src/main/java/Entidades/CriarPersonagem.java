@@ -23,10 +23,6 @@ public class CriarPersonagem extends Lutador {
         this.raca = raca;
         this.arquetipo = arquetipo;
 
-        this.vida = personagem.getVida() + raca.getVida() + arquetipo.getVida();
-        this.escudo = personagem.getEscudo() + raca.getEscudo() + arquetipo.getEscudo();
-        this.poderFisico = personagem.getPoderFisico() + raca.getPoderFisico() + arquetipo.getPoderFisico();
-        this.poderHabilidade = personagem.getPoderHabilidade() + raca.getPoderHabilidade() + arquetipo.getPoderHabilidade();
     }
 
     public int getId() {
@@ -96,4 +92,30 @@ public class CriarPersonagem extends Lutador {
 
     }
 
+    public void aplicandoPersonagemEmCriarPersonagem() {
+
+        if (this.personagem != null && this.raca != null && this.arquetipo != null) {
+            this.setVida(personagem.getVida() + raca.getVida() + arquetipo.getVida());
+            this.setEscudo(personagem.getEscudo() + raca.getEscudo() + arquetipo.getEscudo());
+            this.setPoderFisico(personagem.getPoderFisico() + raca.getPoderFisico() + arquetipo.getPoderFisico());
+            this.setPoderHabilidade(personagem.getPoderHabilidade() + raca.getPoderHabilidade() + arquetipo.getPoderHabilidade());
+
+        } else {
+            System.out.println("Personagem não existente");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "\n\n" + "CriarPersonagem =" +
+                "\n id = " + this.getId() +
+                "\n nome = '" + this.getNome() +
+                ",\n vida = " + this.getVida() +
+                ",\n escudo = " + this.getEscudo() +
+                ",\n Poder Físico = " + this.getPoderFisico() +
+                ",\n Poder Habilidade = " + this.getPoderHabilidade() +
+                "\n personagem = " + personagem.getId() +
+                "\n raca = " + raca.getId() +
+                "\n arquetipo = " + arquetipo.getId();
+    }
 }
