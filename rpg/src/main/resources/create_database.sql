@@ -36,7 +36,7 @@ create table if not exists batalhas(
 	id_batalha int not null primary key auto_increment,
     lutador1_id int not null,
     lutador2_id int not null,
-    vencedor_id int not null,
+    vencedor_id int,
     foreign key(lutador1_id) references personagens(id_personagem),
     foreign key(lutador2_id) references personagens(id_personagem),
     foreign key(vencedor_id) references personagens(id_personagem)

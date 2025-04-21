@@ -63,6 +63,7 @@ public class Batalha {
 				
 			} else {
 				System.out.println("Ouve um empate!");
+				this.setVencedor(null);
 				lutador1.setVida(0);
 				lutador2.setVida(0);
 				System.out.println("\nSituação dos personagens depois da batalha \n" + lutador2.toString() + lutador1.toString());

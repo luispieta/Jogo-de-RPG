@@ -1,7 +1,6 @@
 
 package Main;
 	
-import java.nio.channels.Selector;
 import java.util.Scanner;
 import Entidades.*;
 import Repositorio.RepositorioArquetipo;
@@ -55,48 +54,45 @@ public class Ring {
 					System.out.println("Jogador 2, escolha uma opção:");
 					Lutador jogador2 = iniciarBatalha.escolherPersonagem();
 
-					//Resultado NULL para dizer que não tem nem um jogador como vencedor
-					Lutador vencedor = null;
-
-                    if (jogador1.getVida() > jogador2.getVida()) {
-						vencedor = jogador1;
-
-					} else if (jogador2.getVida() > jogador1.getVida()) {
-						vencedor = jogador2;
-
-					} else {
-						System.out.println("Empate!");
-					}
-				
-					Batalha batalhas = new Batalha(jogador1, jogador2, vencedor);
+					Batalha batalhas = new Batalha(jogador1, jogador2, null);
 					batalhas.iniciar();
 					batalhaRepositorio.salvarBatalha(batalhas);
 
 				} else if (escolha == 2) {
-					while(true) {
+					loop: while(true) {
 						System.out.println("===== CONSULTAR DADOS =====");
-						System.out.println("O que deseja Consultar? \n 1 - Arquétipos \n 2 - Raças \n 3 - Personagens \n 4 - Batalhas \n 5 - Sair");
+						System.out.println("O que deseja Consultar? \n 1 - Arquétipos \n 2 - Raças \n 3 - Personagens \n 4 - Personagens Criados \n 5 - Batalhas \n 6 - Sair");
 						int consultar = entrada.nextInt();
 						System.out.println("\n");
 
-						if (consultar == 1) {
-							System.out.println("Todos os Arquétipos");
-							System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
+						switch (consultar) {
+							case 1:
+								System.out.println("Todos os Arquétipos");
+								System.out.println(arquetipoRepositorio.buscarTodasArquetipos());
+								break;
 
-						} else if (consultar == 2) {
-							System.out.println("Todos as Raças");
-							System.out.println(racaRepositorio.buscarTodasRacas());
+							case 2:
+								System.out.println("Todos as Raças");
+								System.out.println(racaRepositorio.buscarTodasRacas());
+								break;
 
-						} else if (consultar == 3) {
-							System.out.println("Todos as Personagens");
-							System.out.println(personagemRepositorio.buscarTodosPersonagens());
+							case 3:
+								System.out.println("Todos as Personagens");
+								System.out.println(personagemRepositorio.buscarTodosPersonagens());
+								break;
 
-						} else if (consultar == 4) {
-							System.out.println("Todas as Batalhas");
-							System.out.println(batalhaRepositorio.buscarTodasBatalhas());
+							case 4:
+								System.out.println("Todos as Personagens Criados");
+								System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
+								break;
 
-						} else {
-							break;
+							case 5:
+								System.out.println("Todas as Batalhas");
+								System.out.println(batalhaRepositorio.buscarTodasBatalhas());
+								break;
+
+							case 6:
+								break loop;
 
 						}
 
