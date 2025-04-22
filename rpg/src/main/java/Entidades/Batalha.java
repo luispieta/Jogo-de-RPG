@@ -74,8 +74,7 @@ public class Batalha {
 
 	@Override
 	public String toString() {
-		return "\n [id=" + this.getId() + ", lutador1=" + lutador1.getNome() + ", lutador2=" + lutador2.getNome() + ", vencedor=" + vencedor.getNome()
-				+ "]";
+		return "\n" + "id = " + this.getId() + ", lutador1 = " + lutador1.getNome() + ", lutador2 = " + lutador2.getNome() + ", vencedor = " + vencedor + "\n";
 	}
 	
 }

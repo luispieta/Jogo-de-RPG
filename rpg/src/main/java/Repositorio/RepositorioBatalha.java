@@ -2,10 +2,7 @@ package Repositorio;
 
 import Entidades.Batalha;
 import Entidades.Personagem;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +10,6 @@ import BancoDeDados.DatabaseConnection;
 
 public class RepositorioBatalha {
 
-    // Método para salvar uma instância de Raca no banco de dados
     public void salvarBatalha(Batalha batalha) {
         String sql = "INSERT INTO batalhas (lutador1_id, lutador2_id, vencedor_id) VALUES (?, ?, ?)";
 
@@ -22,7 +18,14 @@ public class RepositorioBatalha {
 
             stmt.setInt(1, batalha.getLutador1().getId());
             stmt.setInt(2, batalha.getLutador2().getId());
-            stmt.setInt(3, batalha.getVencedor().getId());
+
+            if (batalha.getVencedor() != null) {
+                stmt.setInt(3, batalha.getVencedor().getId());
+
+            } else {
+                stmt.setNull(3, Types.INTEGER);
+            }
+
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
@@ -37,7 +40,6 @@ public class RepositorioBatalha {
         }
     }
 
-    // Método para buscar todas as raças no banco de dados
     public List<Batalha> buscarTodasBatalhas() {
         List<Batalha> batalhas = new ArrayList<>();
         String sql = "SELECT * FROM batalhas";
@@ -63,9 +65,14 @@ public class RepositorioBatalha {
                 Personagem lutador2 = repositorioLutador2.buscarPersonagemPorId(lutador2_id);
                 batalha.setLutador2(lutador2);
 
-                RepositorioPersonagem repositorioVencedor = new RepositorioPersonagem();
-                Personagem vencedor = repositorioVencedor.buscarPersonagemPorId(vencedorId);
-                batalha.setVencedor(vencedor);
+                if (!rs.wasNull()) {
+                    RepositorioPersonagem repositorioVencedor = new RepositorioPersonagem();
+                    Personagem vencedor = repositorioVencedor.buscarPersonagemPorId(vencedorId);
+                    batalha.setVencedor(vencedor);
+
+                } else {
+                    batalha.setVencedor(null); // Por precauções
+                }
 
             	batalhas.add(batalha);
             }
@@ -77,7 +84,6 @@ public class RepositorioBatalha {
         return batalhas;
     }
 
-    // Método para buscar uma raça específica pelo ID
     public Batalha buscarBatalhaPorId(int id) {
         String sql = "SELECT * FROM batalhas WHERE id_batalha = ?";
     	Batalha batalha = null;
@@ -103,9 +109,15 @@ public class RepositorioBatalha {
                     Personagem lutador2 = repositorioLutador2.buscarPersonagemPorId(lutador2_id);
                     batalha.setLutador2(lutador2);
 
-                    RepositorioPersonagem repositorioVencedor = new RepositorioPersonagem();
-                    Personagem vencedor = repositorioVencedor.buscarPersonagemPorId(vencedorId);
-                    batalha.setVencedor(vencedor);
+                    if (!rs.wasNull()) {
+                        RepositorioPersonagem repositorioVencedor = new RepositorioPersonagem();
+                        Personagem vencedor = repositorioVencedor.buscarPersonagemPorId(vencedorId);
+                        batalha.setVencedor(vencedor);
+
+                    } else {
+                        batalha.setVencedor(null); // Por precauções
+                    }
+
                 }
             }
 

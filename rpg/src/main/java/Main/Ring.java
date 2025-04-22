@@ -32,7 +32,7 @@ public class Ring {
 				String senha = entrada.next();
 
 			} else {
-				System.out.println(criarPersonagemRepositorio.buscarTodosPersonagensCriados());
+				System.out.println(batalhaRepositorio.buscarBatalhaPorId(13));
 
 			}
 			//While para sempre mostrar o MENU
