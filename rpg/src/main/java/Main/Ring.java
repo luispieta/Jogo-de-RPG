@@ -24,17 +24,6 @@ public class Ring {
 			System.out.println("Qual deseja acessar? \n 1 - Menu do Gestor/Desenvolvedor \n 2 - Menu de Batalhas");
 			int acessarMenu = entrada.nextInt();
 
-			if (acessarMenu == 2) {
-				System.out.println("Acesse com seu Login e Senha");
-				System.out.println("Insirá seu Login");
-				String login = entrada.next();
-				System.out.println("Insirá sua senha");
-				String senha = entrada.next();
-
-			} else {
-				System.out.println(batalhaRepositorio.buscarBatalhaPorId(13));
-
-			}
 			//While para sempre mostrar o MENU
 			while (true) {
 				//Selecionar rotina que deseja
@@ -45,7 +34,7 @@ public class Ring {
 
 				//IFs para escolher alguma rotina
 				if (escolha == 1) {
-
+					System.out.println("===== BATALHA =====");
 					IniciarBatalha iniciarBatalha = new IniciarBatalha(personagemRepositorio, criarPersonagemRepositorio);
 
 					System.out.println("Jogador 1, escolha uma opção:");
@@ -57,6 +46,7 @@ public class Ring {
 					Batalha batalhas = new Batalha(jogador1, jogador2, null);
 					batalhas.iniciar();
 					batalhaRepositorio.salvarBatalha(batalhas);
+					System.out.print("\n");
 
 				} else if (escolha == 2) {
 					loop: while(true) {
@@ -94,31 +84,72 @@ public class Ring {
 							case 6:
 								break loop;
 
+							default:
+								System.out.println("Número Inválido");
+								break;
+
 						}
 
 					} 
 				
 				} else if (escolha == 3) {
-					while (true) {
-						System.out.print("Insira um ID para deletar uma batalha: ");
-						int deletar = entrada.nextInt();
+					loop: while (true) {
+						System.out.println("===== DELETAR BATALHAS E PERSONAGENS CRIADOS =====");
+						System.out.println("Escolha se deseja deletar alguma Batalha ou algum Personagem Criado \n 1 - Batalhas \n 2 - Personagens Criados \n 3 - Sair");
+						int batalhaPersonagens = entrada.nextInt();
 
-						if (deletar > 0) {
-							System.out.println("Deseja mesmo deletar a batalha? \n S - sim \n N - Não");
-							String simNao = entrada.next();
+						switch (batalhaPersonagens) {
+							case 1:
+								System.out.print("Insira um ID para deletar uma Batalha: ");
+								int deletarBatalha = entrada.nextInt();
 
-							if(simNao.equals("n")) {
-								System.out.println("Cancelamento do registro a ser deletado.");
+								if (deletarBatalha > 0) {
+									System.out.println("Deseja mesmo deletar a Batalha? \n S - sim \n N - Não");
+									String simNao = entrada.next();
 
-							} else {
-								System.out.println(batalhaRepositorio.deletarBatalha(deletar));
-								System.out.println("Batalha deletada, o ID deletado é " + deletar);
+									if(simNao.equals("n")) {
+										System.out.println("Cancelamento do registro a ser deletado.");
 
-							}
+									} else {
+										System.out.println(batalhaRepositorio.deletarBatalha(deletarBatalha));
+										System.out.println("Batalha deletada, o ID deletado é " + deletarBatalha);
+
+									}
+								}
+								break;
+
+							case 2:
+								System.out.print("Insira um ID para deletar um Personagem: ");
+								int deletarPersonagem = entrada.nextInt();
+
+								if (deletarPersonagem > 0) {
+									System.out.println("Deseja mesmo deletar o Personagem? \n S - sim \n N - Não");
+									String simNao = entrada.next();
+
+									if(simNao.equals("n")) {
+										System.out.println("Cancelamento do registro a ser deletado.");
+
+									} else {
+										System.out.println(batalhaRepositorio.deletarBatalha(deletarPersonagem));
+										System.out.println("Personagem deletada, o ID deletado é " + deletarPersonagem);
+
+									}
+								}
+								break;
+
+							case 3:
+								break loop;
+
+							default:
+								System.out.println("Número Inválido");
+								break;
+
 						}
+
 					}
 
 				} else if(escolha == 4) {
+					System.out.println("===== CRIANDO O PRÓPRIO PERSONAGEM =====");
 					System.out.println("Crie seu próprio jogador \n 1 - sim \n 2 - não");
 					int criar = entrada.nextInt();
 					criarPersonagem.personagensCriar(criar);

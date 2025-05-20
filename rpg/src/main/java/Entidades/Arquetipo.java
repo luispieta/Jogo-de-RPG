@@ -25,7 +25,12 @@ public class Arquetipo extends Lutador {
 	}
 	
 	public String toString() {
-		return "id = " + this.getId() + ",\n nome = " + this.getNome() + ",\n vida = " + this.getVida()+ ",\n escudo = " + this.getEscudo() + ",\n Poder Físico = " + this.getPoderFisico() + ",\n Poder Habilidade = " + this.getPoderHabilidade() + "\n \n";
-	}
+		return "\nArquétipo [" +
+				"\n Id: " + this.getId() +
+				"\n Nome: " + this.getNome() +
+				"\n Vida: " + this.getVida() +
+				"\n Escudo: " + this.getEscudo() +
+				"\n Poder Físico: " + this.getPoderFisico() +
+				"\n Poder Habilidade: " + this.getPoderHabilidade() + " ]\n";	}
 
 }

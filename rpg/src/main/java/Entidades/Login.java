@@ -47,7 +47,13 @@ public class Login {
     }
 
     public String toString() {
-        return "Login = Id: " + this.getId() + "\nNome: " + this.getNome() + "\nLogin: " + this.getLogin() + "\nSenha: " + this.getSenha() + "\nEmail: " + this.getEmail() + "\nTelefone: " + this.getTelefone();
+        return "\nLogin [ " +
+                "\n Id: " + this.getId() +
+                "\n Nome: " + this.getNome() +
+                "\n Login: " + this.getLogin() +
+                "\n Senha: " + this.getSenha() +
+                "\n Email: " + this.getEmail() +
+                "\n Telefone: " + this.getTelefone();
     }
 
 }

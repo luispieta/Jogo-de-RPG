@@ -53,16 +53,15 @@ public class Personagem extends Lutador {
 
 	//Método para visualizar Atríbutos dos Personagens
 	public String toString() {
-		return "id = " + this.getId()  +
-				",\n nome = " + this.getNome() +
-				",\n vida = " + this.getVida() +
-				",\n escudo = " + this.getEscudo() +
-				",\n Poder Físico = " + this.getPoderFisico() +
-				",\n Poder Habilidade = " + this.getPoderHabilidade() +
-				",\n Raca = " + raca.getId() +
-				",\n Arquetipo = " + arquetipo.getId() +
-				",\n Valor do dado = " + this.getDado() +
-				"\n \n";
+		return "\nPersonagem [ " +
+				"\n Id: " + this.getId()  +
+				"\n Nome: " + this.getNome() +
+				"\n Vida: " + this.getVida() +
+				"\n Escudo: = " + this.getEscudo() +
+				"\n Poder Físico: " + this.getPoderFisico() +
+				"\n Poder Habilidade: " + this.getPoderHabilidade() +
+				"\n Raca: " + raca.getId() +
+				"\n Arquetipo: " + arquetipo.getId() + " ]\n";
 
 	}
 	

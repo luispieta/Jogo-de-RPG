@@ -53,11 +53,11 @@ public abstract class Lutador {
 	//Método para girar o dado em um número aleatório
 	protected void girarDado() {
 		//Utilizando o método MATH.RANDOM para gerar um número aleatório
-		int numero = (int) (Math.random() * 21);
-		//Com o reesultado do NUMERO, coloco o valor que o random deu para colocar no abributo SETTER ou DADO
+		int numero = (int) (Math.random() * 51);
 		this.setDado(numero);
 	}
-	
+
+	/*
 	//Método para atacar o alvo
 	public void atacar(Lutador alvo) {
 		//Colocando o valor do dado dentro do método
@@ -97,16 +97,16 @@ public abstract class Lutador {
 			
 		} 
 	}
+	 */
 
 	@Override
 	public String toString() {
-		return "Lutador{" +
-				"id=" + id +
-				", nome='" + nome + '\'' +
-				", vida=" + vida +
-				", escudo=" + escudo +
-				", poderFisico=" + poderFisico +
-				", poderHabilidade=" + poderHabilidade +
-				'}';
+		return "\nLutador [" +
+				"\n Id:" + id +
+				"\n Nome: '" + nome +
+				"\n Vida: " + vida +
+				"\n Escudo: " + escudo +
+				"\n PoderFisico: " + poderFisico +
+				"\n PoderHabilidade: " + poderHabilidade + " ]\n";
 	}
 }

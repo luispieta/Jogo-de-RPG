@@ -106,15 +106,15 @@ public class CriarPersonagem extends Lutador {
 
     @Override
     public String toString() {
-        return "\n\n" + "CriarPersonagem =" +
-                "\n id = " + this.getId() +
-                "\n nome = '" + this.getNome() +
-                ",\n vida = " + this.getVida() +
-                ",\n escudo = " + this.getEscudo() +
-                ",\n Poder Físico = " + this.getPoderFisico() +
-                ",\n Poder Habilidade = " + this.getPoderHabilidade() +
-                "\n personagem = " + personagem.getId() +
-                "\n raca = " + raca.getId() +
-                "\n arquetipo = " + arquetipo.getId();
+        return "\nCriarPersonagem [" +
+                "\n Id: " + this.getId() +
+                "\n Nome: '" + this.getNome() +
+                ",\n Vida: " + this.getVida() +
+                ",\n Escudo: " + this.getEscudo() +
+                ",\n Poder Físico: " + this.getPoderFisico() +
+                ",\n Poder Habilidade: " + this.getPoderHabilidade() +
+                "\n Personagem: " + personagem.getId() +
+                "\n Raca: " + raca.getId() +
+                "\n Arquetipo: " + arquetipo.getId() + " ]\n";
     }
 }

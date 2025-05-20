@@ -44,6 +44,56 @@ public class Batalha {
 	
 	//Método para iníciar a batalha
 	public void iniciar() {
+
+		int jogadorVida1 = lutador1.getVida();
+		int jogadorVida2 = lutador2.getVida();
+		int turno = 1;
+
+		while(jogadorVida1 > 0 && jogadorVida2 > 0) {
+
+			System.out.println("===== " + turno + "° TURNO =====");
+			System.out.print("\n");
+
+			int ataqueJogador1 = 0;
+			lutador1.girarDado();
+			ataqueJogador1 = (lutador1.getPoderFisico() + lutador1.getPoderHabilidade()) + lutador1.getDado();
+
+			jogadorVida2 -= ataqueJogador1;
+			System.out.println("Jogador 1 causou " + ataqueJogador1 + " de dano no jogador 2, resultando em " + (jogadorVida2 - ataqueJogador1) + " de vida" );
+			System.out.print("\n");
+			if(jogadorVida2 <= 0) {
+				System.out.println("O jogador 2 foi derrotado");
+			}
+
+			int ataqueJogador2 = 0;
+			lutador2.girarDado();
+			ataqueJogador2 = (lutador2.getPoderFisico() + lutador2.getPoderHabilidade()) + lutador2.getDado();
+
+			jogadorVida1 -= ataqueJogador2;
+			System.out.println("Jogador 2 causou " + ataqueJogador2 + " de dano no jogador 1, resultando em " + (jogadorVida1 - ataqueJogador2) + " de vida" );
+			System.out.print("\n");
+			if(jogadorVida1 <= 0){
+				System.out.println("O jogador 1 foi derrotado");
+			}
+
+			turno++;
+			System.out.print("\n");
+		}
+
+		if(jogadorVida1 > 0) {
+			System.out.println("Jogador 1 ganhou");
+			this.setVencedor(lutador1);
+
+		} else if(jogadorVida2 > 0) {
+			System.out.println("Jogador 2 ganhou");
+			this.setVencedor(lutador2);
+
+		} else{
+			System.out.println("Ouve um empate");
+			this.setVencedor(null);
+
+		}
+		/*
 		while(true) {
 			if (lutador1.getVida() > 0 && lutador2.getVida() > 0) {
 				lutador1.atacar(lutador2);
@@ -70,11 +120,16 @@ public class Batalha {
 				break;
 			}
 		}
+		 */
 	}
 
 	@Override
 	public String toString() {
-		return "\n" + "id = " + this.getId() + ", lutador1 = " + lutador1.getNome() + ", lutador2 = " + lutador2.getNome() + ", vencedor = " + vencedor + "\n";
+		return "\nBatalha [" +
+				"\n id = " + this.getId() +
+				"\n lutador1 = " + lutador1.getNome() +
+				"\n lutador2 = " + lutador2.getNome() +
+				"\n vencedor = " + vencedor + " ]\n";
 	}
 	
 }
