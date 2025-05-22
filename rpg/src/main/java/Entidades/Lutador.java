@@ -72,7 +72,7 @@ public abstract class Lutador {
 	
 	//Método para o alvo se defender
 	public void defender(int dano) {
-		//IF para ver se o alvo tem escudo ou não, se tiver rodará adinate, se não pulara para próximo IF
+		//IF para ver se o alvo tem escudo ou não, se tiver rodará adiante, se não pulara para próximo IF
 		if (this.getEscudo() > 0) {
 			
 			//Valor do dano que tirará do escudo

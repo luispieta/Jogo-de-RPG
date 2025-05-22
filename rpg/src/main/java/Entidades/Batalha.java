@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Scanner;
+
 public class Batalha {
 
 	protected int id;
@@ -45,8 +47,9 @@ public class Batalha {
 	//Método para iníciar a batalha
 	public void iniciar() {
 
-		int jogadorVida1 = lutador1.getVida();
-		int jogadorVida2 = lutador2.getVida();
+		Scanner validacao = new Scanner(System.in);
+		int jogadorVida1 = lutador1.getVida() + lutador1.getEscudo();
+		int jogadorVida2 = lutador2.getVida() + lutador2.getEscudo();
 		int turno = 1;
 
 		while(jogadorVida1 > 0 && jogadorVida2 > 0) {
@@ -55,23 +58,57 @@ public class Batalha {
 			System.out.print("\n");
 
 			int ataqueJogador1 = 0;
-			lutador1.girarDado();
-			ataqueJogador1 = (lutador1.getPoderFisico() + lutador1.getPoderHabilidade()) + lutador1.getDado();
+			int defenderJogador1 = 0;
+			System.out.println("VEZ DO JOGADOR " + lutador1.getNome());
+			System.out.println("Faça uma escolha para o personagem \n 1 - Atacar \n 2 - Defender");
+			int reacaoJogador1 = validacao.nextInt();
 
-			jogadorVida2 -= ataqueJogador1;
-			System.out.println("Jogador 1 causou " + ataqueJogador1 + " de dano no jogador 2, resultando em " + (jogadorVida2 - ataqueJogador1) + " de vida" );
-			System.out.print("\n");
+			//atacar
+			if(reacaoJogador1 == 1) {
+				System.out.print("\n");
+				lutador1.girarDado();
+				ataqueJogador1 = (lutador1.getPoderFisico() + lutador1.getPoderHabilidade()) + lutador1.getDado();
+				jogadorVida2 -= ataqueJogador1;
+				System.out.printf("Jogador" + lutador1.getNome() + " causou " + ataqueJogador1 + " de dano no jogador " + lutador2.getNome()
+						+ ", deixando " + (jogadorVida2 - ataqueJogador1) + " de vida" );
+
+				//defender
+			} else {
+				lutador1.girarDado();
+				defenderJogador1 = jogadorVida2 / lutador1.getDado();
+				jogadorVida2 -= defenderJogador1;
+				System.out.println("Jogador " + lutador1.getNome() + " defendeu " + defenderJogador1 + " de dano no jogador 1, resultando em "
+						+ (jogadorVida2 - defenderJogador1) + " de vida" );
+
+			}
+
 			if(jogadorVida2 <= 0) {
 				System.out.println("O jogador 2 foi derrotado");
 			}
 
 			int ataqueJogador2 = 0;
-			lutador2.girarDado();
-			ataqueJogador2 = (lutador2.getPoderFisico() + lutador2.getPoderHabilidade()) + lutador2.getDado();
+			int defenderJogador2 = 0;
+			System.out.println("Vez do Jogador 1");
+			System.out.println("Faça uma escolha para o personagem \n 1 - Atacar \n 2 - Defender");
+			int reacaoJogador2 = validacao.nextInt();
 
-			jogadorVida1 -= ataqueJogador2;
-			System.out.println("Jogador 2 causou " + ataqueJogador2 + " de dano no jogador 1, resultando em " + (jogadorVida1 - ataqueJogador2) + " de vida" );
-			System.out.print("\n");
+			//atacar
+			if(reacaoJogador2 == 1) {
+				lutador2.girarDado();
+				ataqueJogador2 = (lutador2.getPoderFisico() + lutador2.getPoderHabilidade()) + lutador2.getDado();
+				jogadorVida2 -= ataqueJogador2;
+				System.out.printf("Jogador" + lutador2.getNome() + " causou " + ataqueJogador2 + " de dano no jogador " + lutador1.getNome()
+						+ ", deixando " + (jogadorVida1 - ataqueJogador2) + " de vida" );
+
+			//defender
+			} else {
+				lutador2.girarDado();
+				defenderJogador2 = jogadorVida2 / lutador2.getDado();
+				jogadorVida2 -= defenderJogador2;
+				System.out.println("Jogador " + lutador2.getNome() + " defendeu " + defenderJogador2 + " de dano no jogador 1, resultando em " + (jogadorVida2 - defenderJogador2) + " de vida" );
+
+			}
+
 			if(jogadorVida1 <= 0){
 				System.out.println("O jogador 1 foi derrotado");
 			}
@@ -93,34 +130,7 @@ public class Batalha {
 			this.setVencedor(null);
 
 		}
-		/*
-		while(true) {
-			if (lutador1.getVida() > 0 && lutador2.getVida() > 0) {
-				lutador1.atacar(lutador2);
-				lutador2.atacar(lutador1);
-						
-			} else if (lutador1.getVida() > 0 && lutador2.getVida() <= 0){
-				this.setVencedor(lutador1);
-				lutador2.setVida(0);
-				System.out.println("\nO ganhador da batalha é o Jogador 1 com o personagem " + lutador1.getNome() + " com o ID ");
-				break;
-				
-			} else if (lutador1.getVida() <= 0 && lutador2.getVida() > 0) {
-				this.setVencedor(lutador2);
-				lutador1.setVida(0);
-				System.out.println("\nO ganhador da batalha é o Jogador 2 com o personagem " + lutador2.getNome() + " com o ID ");
-				break;
-				
-			} else {
-				System.out.println("Ouve um empate!");
-				this.setVencedor(null);
-				lutador1.setVida(0);
-				lutador2.setVida(0);
-				System.out.println("\nSituação dos personagens depois da batalha \n" + lutador2.toString() + lutador1.toString());
-				break;
-			}
-		}
-		 */
+
 	}
 
 	@Override
